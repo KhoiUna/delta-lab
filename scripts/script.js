@@ -1,33 +1,23 @@
-$(function () {
-  console.log("document is ready!");
+$(() => {
+  $("#btnName").click(() => {
+    const userName = $("#userName").val();
 
-  var userName,
-    nameLength,
-    nameMsg,
-    nameReverse = "";
-
-  $("#btnName").click(function () {
-    userName = $("#userName").val();
-    // console.log(userName);
-    // console.log($('#userName').val().length);
-    // console.log(getStringLength(userName));
-
-    nameLength = getStringLength(userName);
-    nameMsg = "The Length of your name is: ";
+    const nameLength = getStringLength(userName);
+    let nameMsg = "The Length of your name is: ";
     $("#nameOutput").append(nameMsg + nameLength + "<br/>");
 
-    // console.log(reverseString(userName));
-
-    nameReverse = reverseString(userName);
+    const nameReverse = reverseString(userName);
     nameMsg = "Your Name reversed letters is: ";
     $("#nameOutput").append(nameMsg + nameReverse + "<br/>");
 
-    console.log(thirdLetter(userName));
+    nameMsg = "The first letter of your name is: ";
+    $("#nameOutput").append(nameMsg + firstLetter(userName) + "<br/>");
 
-    stringArrayPosition(userName);
+    nameMsg = "Your encrypted name is: ";
+    $("#nameOutput").append(nameMsg + encryptName(userName) + "<br/>");
   });
 
-  $("#btnClear").click(function () {
+  $("#btnClear").click(() => {
     clearElement("#nameOutput", "html");
     clearElement("#userName", "input");
   });
@@ -37,27 +27,26 @@ $(function () {
     return stringLength;
   }
 
-  function reverseString(stringVal) {
-    var revString = stringVal.split("").reverse().join("");
-    return revString;
-  }
+  const reverseString = (stringVal) => stringVal.split("").reverse().join("");
 
-  function thirdLetter(stringVal) {
-    return thirdString;
-    var thirdString = stringVal[2];
-  }
+  const firstLetter = (stringVal) => stringVal[0];
 
-  function clearElement(elementId, elementType) {
+  const clearElement = (elementId, elementType) => {
     if (elementType == "html") {
       $(elementId).html("");
     } else if (elementType == "input") {
       $(elementId).val(" ");
     }
-  }
+  };
 
-  function stringArrayPosition(stringVal) {
-    for (i = 0; i < stringVal.length; i++) {
-      console.log(i + " " + stringVal[i]);
-    }
-  }
+  const encryptName = (stringVal) => {
+    const newName = stringVal.split("").map((letter) => {
+      if (letter === "a") return "@";
+      if (letter === "e") return "3";
+      if (letter === "o") return "0";
+      return letter;
+    });
+
+    return newName.join("");
+  };
 });
