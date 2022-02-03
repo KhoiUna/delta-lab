@@ -2,19 +2,18 @@ $(() => {
   $("#btnName").click(() => {
     const userName = $("#userName").val();
 
-    const nameLength = getStringLength(userName);
-    let nameMsg = "The Length of your name is: ";
-    $("#nameOutput").append(nameMsg + nameLength + "<br/>");
-
-    const nameReverse = reverseString(userName);
-    nameMsg = "Your Name reversed letters is: ";
-    $("#nameOutput").append(nameMsg + nameReverse + "<br/>");
-
-    nameMsg = "The first letter of your name is: ";
-    $("#nameOutput").append(nameMsg + firstLetter(userName) + "<br/>");
-
-    nameMsg = "Your encrypted name is: ";
-    $("#nameOutput").append(nameMsg + encryptName(userName) + "<br/>");
+    $("#nameOutput").append(
+      "The length of your name is: " + getStringLength(userName) + "<br/>"
+    );
+    $("#nameOutput").append(
+      "Your Name reversed letters is: " + reverseString(userName) + "<br/>"
+    );
+    $("#nameOutput").append(
+      "The first letter of your name is: " + firstLetter(userName) + "<br/>"
+    );
+    $("#nameOutput").append(
+      "Your encrypted name is: " + encryptName(userName) + "<br/>"
+    );
   });
 
   $("#btnClear").click(() => {
@@ -22,10 +21,7 @@ $(() => {
     clearElement("#userName", "input");
   });
 
-  function getStringLength(stringVal) {
-    var stringLength = stringVal.length;
-    return stringLength;
-  }
+  const getStringLength = (stringVal) => stringVal.length;
 
   const reverseString = (stringVal) => stringVal.split("").reverse().join("");
 
